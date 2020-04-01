@@ -1,0 +1,4 @@
+---
+# tasks file for jenkins-role
+- name: "Install Jenkins"
+  include: jenkins_install.yaml

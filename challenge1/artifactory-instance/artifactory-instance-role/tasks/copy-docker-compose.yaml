@@ -1,0 +1,5 @@
+---
+- name: "copy docker-compose file to target"
+  copy:
+    src: "{{docker_compose_source}}"
+    dest: "{{docker_compose_destination}}"

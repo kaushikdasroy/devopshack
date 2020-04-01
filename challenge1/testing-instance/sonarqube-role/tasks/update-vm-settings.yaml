@@ -1,0 +1,4 @@
+- name: update vm settings on testing-instance
+  shell: sysctl vm.max_map_count=262144
+- name: update vm settings on testing-instance
+  shell: sysctl -w fs.file-max=65536

@@ -1,0 +1,11 @@
+[Unit]
+Description=Start SonarQube Docker Conatiner
+
+[Service]
+Type=simple
+ExecStart=/etc/systemd/system/start-sonar.sh
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

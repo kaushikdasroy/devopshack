@@ -1,0 +1,10 @@
+- name: copy service file
+  copy:
+    src: sonar.service
+    dest: /etc/systemd/system/
+    mode: 0664
+- name: copy shell script
+  copy:
+    src: start-sonar.sh
+    dest: /etc/systemd/system/
+    mode: +x 

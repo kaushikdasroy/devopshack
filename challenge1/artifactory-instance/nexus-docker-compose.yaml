@@ -1,0 +1,19 @@
+# Check the docker-compose yaml version against docker version : https://docs.docker.com/compose/compose-file/
+# Run it using : docker-compose -f nexus-docker-compose.yaml up -d
+
+version: "3.7"
+services:
+
+  nexus:
+    image: sonatype/nexus3
+    volumes:
+      - nexus-data:/nexus-data
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+      - "8083:8083"
+    deploy:
+      replicas: 1
+
+volumes:
+  nexus-data:

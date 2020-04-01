@@ -1,0 +1,9 @@
+- name: Copy docker-compose-sonarqube.yaml to SonarQube VM instance.
+  copy:
+    src: docker-compose.yml
+    dest: /work/
+    remote_src: no
+    owner: root
+    group: root
+    mode: 0755
+    force: yes

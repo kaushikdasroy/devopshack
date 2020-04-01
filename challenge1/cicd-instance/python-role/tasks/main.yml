@@ -1,0 +1,4 @@
+---
+# tasks file for python-role
+- name: "Install Python"
+  include: python_install.yaml

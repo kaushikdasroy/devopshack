@@ -1,0 +1,4 @@
+---
+# tasks file for git-role
+- name: "Install GIT"
+  include: git_install.yaml

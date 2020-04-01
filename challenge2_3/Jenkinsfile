@@ -1,0 +1,114 @@
+node('master') {
+	def gitUrl = "https://github.com/ArghyaChakraborty/tcs-devops-hackathon-gr12.git"
+	def mvnHome
+	def registryHost = "35.202.21.173"
+	def registryPort = "8081"
+	def registryDockerPort = "8083"
+	def registryUser = "admin"
+	def registryPassword = "admin"
+	def sonarHost = "35.232.202.116"
+	def sonarPort = "9000"
+	def kubernetesNamespace= "default"
+	def gkeProjectId = "skilled-eon-253621"
+	def gkeClusterName = "standard-cluster-1"
+	def gkeProjectZone = "us-central1-a"
+	
+	stage('Checkout') { 
+		timestamps {
+			cleanWs()
+			withEnv(["gitUrl=$gitUrl"]) {
+				// Checkout source code repository
+				git "$gitUrl"
+				mvnHome = tool 'Local-Maven'
+
+			}
+		}
+	}
+
+	
+	stage('Build') {
+		timestamps {
+			// Run the maven build
+			withEnv(["MVN_HOME=$mvnHome"]) {
+				if (isUnix()) {
+					jobStatus = sh(returnStatus: true, script: 'cd ${WORKSPACE}/eureka-server/ && "$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package')
+					
+					if(jobStatus != 0) {
+						sh "exit 1"
+					} 
+				}
+			}
+		}
+	}
+	
+	stage('Static Analysis') {
+		timestamps {
+			// Run maven command to perform static analysis & publish report in sonar server
+			withEnv(["MVN_HOME=$mvnHome", "sonarHost=$sonarHost", "sonarPort=$sonarPort"]) {
+				if (isUnix()) {
+					jobStatus = sh(returnStatus: true, script: 'cd ${WORKSPACE}/eureka-server/ && "$MVN_HOME/bin/mvn" sonar:sonar -Dsonar.projectKey=eureka-server -Dsonar.host.url="http://$sonarHost:$sonarPort" -Dsonar.login=a2334f274ac6d07a46558e2126114f2dd2d3bf46')
+					
+					if(jobStatus != 0) {
+						sh "exit 1"
+					} 
+				}
+			}
+		}
+	}
+	
+
+	stage('Push Image') {
+		timestamps {
+			try {
+				
+				withEnv(["registryHost=$registryHost", "registryPort=$registryPort", "registryDockerPort=$registryDockerPort", "registryUser=$registryUser", "registryPassword=$registryPassword"]) {
+
+					if (isUnix()) {
+						
+						// Push Docker Image to nexus repository
+						
+						loginStatus = sh(returnStatus: true, script: 'docker login "${registryHost}":"${registryDockerPort}" -u "${registryUser}" -p "${registryPassword}"')
+						if(loginStatus != 0) {
+							sh "Login to Docker Registry failed"
+							sh "exit 1"
+						}
+						
+						tagStatus = sh(returnStatus: true, script: 'docker tag "${registryHost}":"${registryDockerPort}"/eureka-server "${registryHost}":"${registryDockerPort}"/eureka-server:"${BUILD_NUMBER}"')
+						if(tagStatus != 0) {
+							sh "Tagging docker image with BUILD_NUMBER failed"
+							sh "exit 1"
+						}	
+						
+						pushStatus = sh(returnStatus: true, script: 'docker push "${registryHost}":"${registryDockerPort}"/eureka-server:"${BUILD_NUMBER}"')
+						if(pushStatus != 0) {
+							sh "Docker Push failed"
+							sh "exit 1"
+						} else {
+							sh 'docker rmi "${registryHost}":"${registryDockerPort}"/eureka-server:"${BUILD_NUMBER}"'
+						}
+					}
+				}
+
+
+			} catch(Exception ex) {
+				sh "exit 1"
+			}
+		}
+	}
+	
+	stage('Deploy') {
+		timestamps {
+			try {
+				withEnv(["kubernetesNamespace=$kubernetesNamespace", "gkeProjectId=$gkeProjectId", "gkeClusterName=$gkeClusterName", "gkeProjectZone=$gkeProjectZone" ]) {
+					// Deploy docker image to kubernetes cluster
+					sh "sed 's/BUILD_NUMBER/${BUILD_NUMBER}/g' ${WORKSPACE}/challenge2_3/kubernetes-deployment.yaml > ${WORKSPACE}/challenge2_3/kubernetes-deployment-copy.yaml"
+					sh "mv ${WORKSPACE}/challenge2_3/kubernetes-deployment-copy.yaml ${WORKSPACE}/challenge2_3/kubernetes-deployment.yaml"
+					step([$class: 'KubernetesEngineBuilder',namespace: "$kubernetesNamespace" , projectId: "$gkeProjectId" , clusterName: "$gkeClusterName" , zone: "$gkeProjectZone" , manifestPattern: 'challenge2_3/kubernetes-deployment.yaml', credentialsId: "$gkeProjectId" , verifyDeployments: false])
+				}
+			} catch(Exception ex) {
+				sh "exit 1"
+			}
+		}
+	}
+
+}

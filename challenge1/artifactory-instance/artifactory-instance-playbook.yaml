@@ -1,0 +1,21 @@
+---
+- hosts: artifactory-instance
+  roles:
+  - role: geerlingguy.docker
+    become: yes
+    vars:
+      docker_edition: 'ce'
+     
+- hosts: artifactory-instance
+  roles:
+  - role : artifactory-instance-role
+    become: yes
+    vars:
+      docker_compose_source: nexus-docker-compose.yaml
+      docker_compose_destination: /work/
+      nexus_service_source: nexus.service
+      nexus_service_destination: /etc/systemd/system/
+      start_nexus_script_source: start-nexus.sh
+      start_nexus_script_destination: /etc/systemd/system/
+      stop_nexus_script_source: stop-nexus.sh
+      stop_nexus_script_destination: /etc/systemd/system/

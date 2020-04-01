@@ -1,0 +1,6 @@
+- name: "issue daemon-reload, enable nexus service and start the same"
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+    name: nexus.service

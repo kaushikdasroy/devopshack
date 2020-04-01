@@ -1,0 +1,4 @@
+---
+# tasks file for docker-role
+- name: "Install Docker"
+  include: docker_install.yaml

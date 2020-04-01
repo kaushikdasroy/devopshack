@@ -1,0 +1,4 @@
+---
+- import_playbook: ./artifactory-instance/artifactory-instance-playbook.yaml
+- import_playbook: ./cicd-instance/cicd-instance.yaml
+- import_playbook: ./testing-instance/sonarqube-playbook.yaml

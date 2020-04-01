@@ -1,0 +1,6 @@
+- name: "issue daemon-reload, enable sonarqube service and start the same"
+  systemd:
+    state: started
+    daemon_reload: yes
+    enabled: yes
+    name: sonar.service  

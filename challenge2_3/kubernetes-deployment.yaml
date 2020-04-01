@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eureka-service
+  labels:
+    run: eureka-service
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: eureka-service
+    spec:
+      imagePullSecrets:
+      - name: regcred4
+      containers:
+        - name: eureka-server
+          image: 35.202.21.173:8082/eureka-server:BUILD_NUMBER
+          ports:
+            - containerPort: 8761
+              protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: eureka-service
+spec:
+  selector:
+    run: eureka-service
+  ports:
+    - name: port4
+      protocol: TCP
+      port: 8761
+      targetPort: 8761
+  type: LoadBalancer
+

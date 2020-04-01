@@ -1,0 +1,18 @@
+---
+# tasks file for sonarqube-role
+- name: "create work directory"
+  include: create-work-dir.yaml
+- name: "Upgrade all the packages"
+  include: upgrade-yum-packages.yaml
+- name: "Check and Install docker"
+  include: install-docker.yaml
+- name: "Check and Install docker-compose"
+  include: install-docker-compose.yaml
+- name: "copy docker-compose file"
+  include: copy-docker-compose-file.yaml
+- name: "update vm settingse"
+  include: update-vm-settings.yaml
+- name: "copy sonar service file"
+  include: copy-sonar-service.yaml
+- name: "enable and start sonar service"
+  include: enable-sonar-service.yaml
