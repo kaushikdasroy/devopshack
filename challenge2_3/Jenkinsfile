@@ -46,7 +46,7 @@ node('master') {
 			// Run maven command to perform static analysis & publish report in sonar server
 			withEnv(["MVN_HOME=$mvnHome", "sonarHost=$sonarHost", "sonarPort=$sonarPort"]) {
 				if (isUnix()) {
-					jobStatus = sh(returnStatus: true, script: 'cd ${WORKSPACE}/eureka-server/ && "$MVN_HOME/bin/mvn" sonar:sonar -Dsonar.projectKey=eureka-server -Dsonar.host.url="http://$sonarHost:$sonarPort" -Dsonar.login=a2334f274ac6d07a46558e2126114f2dd2d3bf46')
+					jobStatus = sh(returnStatus: true, script: 'cd ${WORKSPACE}/eureka-server/ && "$MVN_HOME/bin/mvn" sonar:sonar -Dsonar.projectKey=eureka-server -Dsonar.host.url="http://$sonarHost:$sonarPort" -Dsonar.login=a7a6562a87b715729cd1ffacac700ec54527845b')
 					
 					if(jobStatus != 0) {
 						sh "exit 1"
