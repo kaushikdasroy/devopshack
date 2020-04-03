@@ -1,12 +1,12 @@
 node('master') {
-	def gitUrl = "https://github.com/ArghyaChakraborty/tcs-devops-hackathon-gr12.git"
+	def gitUrl = "https://github.com/kaushikdasroy/devopshack.git"
 	def mvnHome
-	def registryHost = "35.202.21.173"
+	def registryHost = "35.202.143.29"
 	def registryPort = "8081"
 	def registryDockerPort = "8083"
 	def registryUser = "admin"
 	def registryPassword = "admin"
-	def sonarHost = "35.232.202.116"
+	def sonarHost = "35.202.95.120"
 	def sonarPort = "9000"
 	def kubernetesNamespace= "default"
 	def gkeProjectId = "skilled-eon-253621"
