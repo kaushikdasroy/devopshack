@@ -1,7 +1,7 @@
 node('master') {
 	def gitUrl = "https://github.com/kaushikdasroy/devopshack.git"
 	def mvnHome
-	def registryHost = "35.202.143.29"
+	def registryHost = "35.202.188.188"
 	def registryPort = "8081"
 	def registryDockerPort = "8083"
 	def registryUser = "admin"
