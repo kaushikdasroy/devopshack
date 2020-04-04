@@ -9,7 +9,7 @@ node('master') {
 	def sonarHost = "35.202.95.120"
 	def sonarPort = "9000"
 	def kubernetesNamespace= "default"
-	def gkeProjectId = "skilled-eon-253621"
+	def gkeProjectId = "tribal-pad-272823"
 	def gkeClusterName = "standard-cluster-1"
 	def gkeProjectZone = "us-central1-a"
 	
