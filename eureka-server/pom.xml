@@ -78,7 +78,7 @@
                   </execution>
                 </executions>
                 <configuration>
-                 <repository>35.202.21.173:8083/${project.artifactId}</repository>
+                 <repository>35.202.188.188:8083/${project.artifactId}</repository>
                   <buildArgs>
                     <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                   </buildArgs>
