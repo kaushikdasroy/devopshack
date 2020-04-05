@@ -103,7 +103,7 @@ node('master') {
 					// Deploy docker image to kubernetes cluster
 					sh "sed 's/BUILD_NUMBER/${BUILD_NUMBER}/g' ${WORKSPACE}/challenge2_3/kubernetes-deployment.yaml > ${WORKSPACE}/challenge2_3/kubernetes-deployment-copy.yaml"
 					sh "mv ${WORKSPACE}/challenge2_3/kubernetes-deployment-copy.yaml ${WORKSPACE}/challenge2_3/kubernetes-deployment.yaml"
-					step([$class: 'KubernetesEngineBuilder', projectId: "$gkeProjectId" , clusterName: "$gkeClusterName" , location: "$gkeProjectZone" , manifestPattern: 'challenge2_3/kubernetes-deployment.yaml', credentialsId: "$gkeProjectId" , verifyDeployments: true])
+					step([$class: 'KubernetesEngineBuilder', projectId: "$gkeProjectId" , clusterName: "$gkeClusterName" , location: "$gkeProjectZone" , manifestPattern: 'challenge2_3/kubernetes-deployment.yaml', credentialsId: "$gkeProjectId" , verifyDeployments: false])
 				}
 			} catch(Exception ex) {
 				sh "exit 1"
