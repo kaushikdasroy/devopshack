@@ -15,8 +15,8 @@ spec:
       - name: regcred4
       containers:
         - name: eureka-server
-#          image: 35.202.188.188:8083/eureka-server:BUILD_NUMBER
-           image: nginx:latest
+#         image: 35.202.188.188:8083/eureka-server:BUILD_NUMBER
+          image: nginx:latest
           ports:
             - containerPort: 8761
               protocol: TCP
