@@ -12,6 +12,8 @@ node('master') {
 	def gkeProjectId = "tribal-pad-272823"
 	def gkeClusterName = "standard-cluster-1"
 	def gkeProjectZone = "us-central1-a"
+	def gkeProdClusterName = "production-cluster-1"
+    def gkeProdProjectZone = "us-east1-b"
 	
 	stage('Checkout') { 
 		timestamps {
@@ -96,7 +98,7 @@ node('master') {
 		}
 	}
 	
-	stage('Deploy') {
+	stage('Deploy to Test GKE') {
 		timestamps {
 			try {
 				withEnv(["kubernetesNamespace=$kubernetesNamespace", "gkeProjectId=$gkeProjectId", "gkeClusterName=$gkeClusterName", "gkeProjectZone=$gkeProjectZone" ]) {
@@ -108,6 +110,21 @@ node('master') {
 			} catch(Exception ex) {
 				sh "exit 1"
 			}
+		}
+	}
+
+    stage('Deploy to Prod GKE') {
+    	timestamps {
+			try {
+            		withEnv(["kubernetesNamespace=$kubernetesNamespace", "gkeProjectId=$gkeProjectId", "gkeClusterName=$gkeProdClusterName", "gkeProjectZone=$gkeProdProjectZone" ]) {
+            			// Deploy docker image to kubernetes cluster
+            			input message:"Proceed with Production deployment?"
+            			step([$class: 'KubernetesEngineBuilder', projectId: "$gkeProjectId" , clusterName: "$gkeProdClusterName" , location: "$gkeProdProjectZone" , manifestPattern: 'challenge2_3/kubernetes-deployment.yaml', credentialsId: "$gkeProjectId" , verifyDeployments: false])
+            		}
+             } catch(Exception ex) {
+            	 sh "exit 1"
+             }
+
 		}
 	}
 
