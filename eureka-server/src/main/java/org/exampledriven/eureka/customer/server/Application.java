@@ -22,7 +22,7 @@ public class Application {
 }
 
 @RestController
-public class HelloController {
+private class HelloController {
 
 	@RequestMapping("/")
 	public String index() {
