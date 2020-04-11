@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18f6d5c3-5e6b-4904-9f25-d5af7d2febc8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/src/main/java/org/exampledriven/eureka/client/eurekaClientApplication/EurekaClientApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/src/main/java/org/exampledriven/eureka/client/eurekaClientApplication/HelloWorldController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/src/test/java/org/exampledriven/eureka/client/eurekaClientApplication/EurekaClientApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/org/exampledriven/eureka/customer/server/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/java/org/exampledriven/eureka/customer/server/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/org/exampledriven/eureka/customer/server/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +25,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1a0wrmMmHEphd3zmLtrcUgF4kWh" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -54,5 +68,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
