@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18f6d5c3-5e6b-4904-9f25-d5af7d2febc8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/src/main/java/org/exampledriven/eureka/client/eurekaClientApplication/EurekaClientApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/src/main/java/org/exampledriven/eureka/client/eurekaClientApplication/HelloWorldController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eurekaClientApplication/src/test/java/org/exampledriven/eureka/client/eurekaClientApplication/EurekaClientApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eurekaClientApplication/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaClientApplication/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
